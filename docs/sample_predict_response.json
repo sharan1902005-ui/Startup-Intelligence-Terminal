@@ -1,0 +1,26 @@
+{
+  "prediction": "Growing",
+  "confidence": 91.04,
+  "similar_startups": [
+    {
+      "name": "LearnBoost",
+      "similarity": 99.9
+    },
+    {
+      "name": "Extend Labs",
+      "similarity": 99.8
+    },
+    {
+      "name": "RealMassive",
+      "similarity": 99.7
+    },
+    {
+      "name": "Patron Technology",
+      "similarity": 99.6
+    },
+    {
+      "name": "SmartCrowdz",
+      "similarity": 99.6
+    }
+  ]
+}

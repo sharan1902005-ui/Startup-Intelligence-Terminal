@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+
+node_modules/
+
+data/raw/
+data/processed/
+frontend/vite-dev*.log
