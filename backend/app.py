@@ -56,7 +56,8 @@ def predict(request: StartupRequest):
     class_id, confidence = predict_outcome(X)
     prediction = LABELS[class_id]
 
-    embedding = embedding_model.predict(X, verbose=0)[0]
+    input_name = embedding_model.get_inputs()[0].name
+    embedding = embedding_model.run(None, {input_name: X})[0][0]
     predicted_status = {
         "Shutdown": "closed",
         "Acquired": "acquired",

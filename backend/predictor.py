@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 try:
     from .model_loader import model, scaler
@@ -57,18 +56,16 @@ def preprocess_rounds(rounds):
 
 def prepare_input(features):
     feature_frame = pd.DataFrame(features, columns=FEATURES)
-    scaled_features = scaler.transform(feature_frame)
-    return pad_sequences(
-        [scaled_features],
-        maxlen=MAX_LEN,
-        padding="post",
-        truncating="post",
-        dtype="float32",
-    )
+    scaled_features = scaler.transform(feature_frame).astype("float32")
+    padded = np.zeros((1, MAX_LEN, len(FEATURES)), dtype="float32")
+    n = min(len(scaled_features), MAX_LEN)
+    padded[0, :n] = scaled_features[:n]
+    return padded
 
 
 def predict_outcome(X):
-    probs = model.predict(X, verbose=0)
+    input_name = model.get_inputs()[0].name
+    probs = model.run(None, {input_name: X})[0]
     class_id = int(np.argmax(probs[0]))
     confidence = float(probs[0][class_id])
     return class_id, confidence

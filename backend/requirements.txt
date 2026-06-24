@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 python-multipart
-tensorflow-cpu
+onnxruntime
 scikit-learn==1.4.2
 joblib
 numpy==1.26.4
